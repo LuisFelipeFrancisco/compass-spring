@@ -1,10 +1,6 @@
 package com.compass.course.config;
 
-import com.compass.course.entities.Category;
-import com.compass.course.entities.Order;
-import com.compass.course.entities.OrderItem;
-import com.compass.course.entities.Product;
-import com.compass.course.entities.User;
+import com.compass.course.entities.*;
 import com.compass.course.entities.enums.OrderStatus;
 import com.compass.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +80,12 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+
+        Payment pay1 = new Payment(null, Instant.now(), o1);
+
+        o1.setPayment(pay1);
+
+        orderRepository.save(o1);
 
     }
 }
